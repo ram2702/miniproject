@@ -10,7 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Bigthree />} />
+          <Route index element={<Dash />} />
           <Route path="/dashboard" element={<Dash />} />
           <Route path="/home" element={<MainPage />} />
         </Routes>

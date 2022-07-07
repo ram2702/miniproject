@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/style.css";
 import "../css/signupStyle.css";
-
+import { Link } from "react-router-dom";
 export default function SignUp() {
   const [isActive, setActive] = React.useState("false");
   const togle = () => {
@@ -14,14 +14,14 @@ export default function SignUp() {
           <div id="myDIV" className={isActive ? "capsec " : "capsec capsign"}>
             <h2 className="signTitle">Lets Get Started!</h2>
             <div className="icons">
-              <a href="/dashboard">
+              <Link to="/dashboard">
                 <img
                   src="./img/facebook-logo-2019.png"
                   height="40px"
                   width="40px"
                   alt=""
                 />
-              </a>
+              </Link>
               <a href="#">
                 <img src="./img/google.png" height="40px" width="40px" alt="" />
               </a>
