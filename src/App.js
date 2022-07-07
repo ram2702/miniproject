@@ -8,7 +8,7 @@ console.log(document.all);
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route index element={<Dash />} />
           <Route path="/dashboard" element={<Dash />} />
