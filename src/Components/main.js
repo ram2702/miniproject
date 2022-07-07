@@ -10,7 +10,7 @@ export default function Main() {
           <p className="three">REPEAT.</p>
           <p className="four">Get Started on your Fitness Journey!</p>
           <p className="caplink five" onClick="location.href='/dashboard'">
-            <a href="/dashboard">Get Started.</a>
+            <a href="/miniproject/dashboard">Get Started.</a>
           </p>
         </div>
       </div>
