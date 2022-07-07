@@ -1,0 +1,283 @@
+* {
+    margin: 0px;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    transition: all 0.1s ease;
+}
+
+body {
+    background-color: #1F2024;
+}
+
+.container {
+    margin-top: 5vh;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #2e2e2e73;
+
+}
+
+.dash {
+
+    width: 80vw;
+    height: 120vh;
+    box-shadow: 1px 1px 16px -7px black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container--menu {
+    width: 20vw;
+}
+
+.container--menu h2 {
+    font-size: 1.8em;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.heading {
+    margin-top: 40px;
+    margin-bottom: 25px;
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+}
+
+.main--sec {
+    align-self: center;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    border-radius: 10px;
+}
+
+.one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.progress-title {
+    margin-top: 25px;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+
+.progress-area {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 25px;
+    align-self: start;
+    display: flex;
+    justify-content: space-around;
+}
+
+.progress-stats {
+    width: 60%;
+    text-align: start;
+}
+
+.menuselect {
+    animation-name: rainbow;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    transition: all ease;
+}
+
+@keyframes rainbow {
+    0% {
+        color: indigo;
+
+    }
+
+    50% {
+        color: #8A2BE2;
+    }
+
+    100% {
+        color: purple;
+    }
+}
+
+.progress-stats-num {
+    width: 20%;
+    text-align: end;
+    justify-self: flex-end;
+}
+
+.progressbar {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 50%;
+    color: green;
+}
+
+.solobg {
+    background: #341948;
+    background-repeat: no-repeat;
+
+
+
+}
+
+
+
+.sec--one {
+    border-radius: 10px 0 0 10px;
+    width: 60%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sec--one h3 {
+    margin: 10%;
+}
+
+.sec--one div {
+    box-shadow: 1px 1px 16px -7px black;
+    height: 80%;
+    width: 45%;
+    border-radius: 10px;
+    background-color: #2a282d52;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.sub--sec {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.sub--sec div {
+    width: 90%;
+    height: 150px;
+    box-shadow: 1px 1px 16px -7px black;
+    background-color: #2a282d52;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+.sub--sec div:hover,
+.progresstext:hover {
+    transform: scale(1.01);
+    transition: all 0.4s ease;
+    color: #8A2BE2;
+}
+
+.progresstext {
+    text-align: center;
+    text-shadow: 6px 6px #090809;
+    font-size: 55px;
+}
+
+.pre {
+    margin-bottom: 10vh;
+}
+
+.dietitem {
+    cursor: pointer;
+    background-color: #2E2E2E;
+    width: 80%;
+    height: 40vh;
+    justify-content: center;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    margin-bottom: 5vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-size: 2.5em;
+    text-shadow: 4px 4px black;
+
+}
+
+.south {
+    background-image: url(../Images/southie.jpeg);
+
+}
+
+.north {
+    background-image: url(../Images/north.jpg);
+
+}
+
+.generic {
+    background-image: url(../Images/generic.jpg);
+
+}
+
+.selectGoal {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.selectGoal h2 {
+    font-size: 2em;
+    transition: all 0.5s ease;
+}
+
+.selectGoal h2:hover {
+    cursor: pointer;
+    color: #341948;
+}
+
+.goalinput {
+    width: 60%;
+    align-self: start;
+    margin-top: 10vh;
+    margin-left: 9%;
+}
+
+.mid {
+    align-self: center;
+    margin-left: 0;
+}
+
+.end {
+    align-self: flex-end;
+    margin-right: 9%;
+}
+
+.goalinput input {
+    padding: 20px;
+    padding-left: 0;
+    color: white;
+    font-family: 'Poppins';
+}
+
+form {
+    color: white;
+}
+
+.pcolor {
+    color: #341948;
+}
+
+.goalinput input:focus,
+.goalinput input:focus::placeholder {
+    color: white;
+}
