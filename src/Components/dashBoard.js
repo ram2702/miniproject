@@ -59,7 +59,7 @@ export default function DashBoard() {
           onMouseEnter={handleClick3}
           onMouseLeave={handleClick4}
         >
-          <Link to="/miniproject/home">Sign Out</Link>
+          <Link to="/home">Sign Out</Link>
         </h2>
       </div>
       {dashElement}

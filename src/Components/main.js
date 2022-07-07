@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/signupStyle.css";
+import { Link } from "react-router-dom";
 export default function Main() {
   return (
     <>
@@ -10,7 +11,7 @@ export default function Main() {
           <p className="three">REPEAT.</p>
           <p className="four">Get Started on your Fitness Journey!</p>
           <p className="caplink five" onClick="location.href='/dashboard'">
-            <a href="/miniproject/dashboard">Get Started.</a>
+            <Link to="/dashboard">Get Started</Link>
           </p>
         </div>
       </div>

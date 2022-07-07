@@ -2,6 +2,7 @@ import React from "react";
 import "../css/dashstyle.css";
 import ProgressDiv from "./progressdiv.js";
 import { workOutData, dietData } from "../Data/workoutDashData";
+import { Link } from "react-router-dom";
 const userName = "User";
 export default function DashHome() {
   return (
@@ -13,8 +14,11 @@ export default function DashHome() {
           <ProgressDiv progData={workOutData} />
         </div>
         <div className="sub--sec">
-          <div to="/main.html" className="solobg sub--one">
-            <h3 className="progresstext"> DietMonitor </h3>
+          <div className="solobg sub--one">
+            <h3 className="progresstext">
+              {" "}
+              <Link to="/DietMonitor">DietMonitor</Link>{" "}
+            </h3>
           </div>
           <div className="solobg sub--two">
             <h3 className="progresstext"> WorkoutTab </h3>

@@ -2,6 +2,9 @@ import React from "react";
 import "../css/style.css";
 import "../css/signupStyle.css";
 import { Link } from "react-router-dom";
+import google from "../Images/google.png";
+import facebook from "../Images/facebook.png";
+import twitter from "../Images/twitter.png";
 export default function SignUp() {
   const [isActive, setActive] = React.useState("false");
   const togle = () => {
@@ -15,23 +18,13 @@ export default function SignUp() {
             <h2 className="signTitle">Lets Get Started!</h2>
             <div className="icons">
               <Link to="/dashboard">
-                <img
-                  src="./img/facebook-logo-2019.png"
-                  height="40px"
-                  width="40px"
-                  alt=""
-                />
+                <img src={facebook} height="40px" width="40px" alt="" />
               </Link>
               <a href="#">
-                <img src="./img/google.png" height="40px" width="40px" alt="" />
+                <img src={google} height="40px" width="40px" alt="" />
               </a>
               <a href="#">
-                <img
-                  src="./img/twitter.png"
-                  height="40px"
-                  width="40px"
-                  alt=""
-                />
+                <img src={twitter} height="40px" width="40px" alt="" />
               </a>
             </div>
             <form
@@ -83,7 +76,7 @@ export default function SignUp() {
               className={isActive ? "pee " : "pee dp"}
             >
               <img
-                src="./img/sign-in.png"
+                src="../Images/sign-in.png"
                 height="40px"
                 width="40px"
                 alt="hjg"
@@ -96,7 +89,7 @@ export default function SignUp() {
               className={isActive ? "pee dp" : "pee"}
             >
               <img
-                src="./img/sign-up.png"
+                src="../Images/sign-up.png"
                 height="40px"
                 width="40px"
                 alt="jh"
