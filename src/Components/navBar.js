@@ -26,12 +26,10 @@ export default function navBar(props) {
         <nav className="navbar">
           <ul className="logo ">
             <li>
-              <a href="/home">
-                <span className="iconlogo">{elementLogo}</span>
-                <span onClick="location.href='#'" className="textlogo">
-                  fitfroggy.
-                </span>
-              </a>
+              <span className="iconlogo">{elementLogo}</span>
+              <span className="textlogo">
+                <Link to="/home">fitfroggy.</Link>
+              </span>
             </li>
           </ul>
           <ul className="navlinks dashnav--prof">
@@ -51,8 +49,8 @@ export default function navBar(props) {
             <ul className="logo">
               <li>
                 <span className="iconlogo">{elementLogo}</span>
-                <span onClick="location.href='#'" className="textlogo">
-                  fitfroggy.
+                <span className="textlogo">
+                  <Link to="/home">fitfroggy.</Link>
                 </span>
               </li>
             </ul>
@@ -90,8 +88,8 @@ export default function navBar(props) {
             <ul className="logo">
               <li>
                 <span className="iconlogo">{elementLogo}</span>
-                <span onClick="location.href='#'" className="textlogo">
-                  fitfroggy.
+                <span className="textlogo">
+                  <Link to="/home">fitfroggy.</Link>
                 </span>
               </li>
             </ul>

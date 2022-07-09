@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import google from "../Images/google.png";
 import facebook from "../Images/facebook.png";
 import twitter from "../Images/twitter.png";
+import sign_up from "../Images/sign-up.png";
+import sign_in from "../Images/sign-in.png";
 export default function SignUp() {
   const [isActive, setActive] = React.useState("false");
   const togle = () => {
@@ -75,12 +77,7 @@ export default function SignUp() {
               onClick={togle}
               className={isActive ? "pee " : "pee dp"}
             >
-              <img
-                src="../Images/sign-in.png"
-                height="40px"
-                width="40px"
-                alt="hjg"
-              />
+              <img src={sign_in} height="40px" width="40px" alt="hjg" />
               SIGN IN
             </p>
             <p
@@ -88,12 +85,7 @@ export default function SignUp() {
               onClick={togle}
               className={isActive ? "pee dp" : "pee"}
             >
-              <img
-                src="../Images/sign-up.png"
-                height="40px"
-                width="40px"
-                alt="jh"
-              />
+              <img src={sign_up} height="40px" width="40px" alt="jh" />
               SIGN UP
             </p>
           </div>
