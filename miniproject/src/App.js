@@ -12,7 +12,7 @@ function App() {
     <>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-          <Route index element={<Dash />} />
+          <Route index element={<MainPage />} />
           <Route path="/dashboard" element={<Dash />} />
           <Route path="/home" element={<MainPage />} />
           <Route path="/DietMonitor" element={<Bigthree />} />
