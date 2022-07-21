@@ -13,9 +13,19 @@ const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
 recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("Accounts");
+  let db_connect = dbo.getAccountsDb("Accounts");
   db_connect
     .collection("records")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
+recordRoutes.route("/diet").get(function (req, res) {
+  let db_connect1 = dbo.getDietDb("diet");
+  db_connect1
+    .collection("northdiet")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
@@ -25,9 +35,17 @@ recordRoutes.route("/record").get(function (req, res) {
 
 // This section will help you get a single record by id
 recordRoutes.route("/record/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
+  let db_connect = dbo.getAccountsDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("records").findOne(myquery, function (err, result) {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+recordRoutes.route("/northdiet/:id").get(function (req, res) {
+  let db_connect = dbo.getDietDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  db_connect.collection("northdiet").findOne(myquery, function (err, result) {
     if (err) throw err;
     res.json(result);
   });
@@ -35,7 +53,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
-  let db_connect = dbo.getDb();
+  let db_connect = dbo.getAccountsDb();
   let myobj = {
     username: req.body.username,
     email: req.body.email,
@@ -50,7 +68,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
 
 // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
-  let db_connect = dbo.getDb();
+  let db_connect = dbo.getAccountsDb();
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
@@ -64,7 +82,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {
-  let db_connect = dbo.getDb();
+  let db_connect = dbo.getAccountsDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("records").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
