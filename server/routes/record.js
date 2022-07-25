@@ -22,10 +22,20 @@ recordRoutes.route("/record").get(function (req, res) {
       res.json(result);
     });
 });
-recordRoutes.route("/diet").get(function (req, res) {
+recordRoutes.route("/northdiet").get(function (req, res) {
   let db_connect1 = dbo.getDietDb("diet");
   db_connect1
     .collection("northdiet")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
+recordRoutes.route("/southdiet").get(function (req, res) {
+  let db_connect2 = dbo.getDietDb("diet");
+  db_connect2
+    .collection("southdiet")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
@@ -59,6 +69,9 @@ recordRoutes.route("/record/add").post(function (req, response) {
     email: req.body.email,
     phone: req.body.phone,
     password: req.body.password,
+    loggedIn: req.body.loggedIn,
+    gender: req.body.gender,
+    age: req.body.age,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -72,12 +85,20 @@ recordRoutes.route("/update/:id").post(function (req, response) {
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
-      username: req.body.username,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: req.body.password,
+      height: req.body.height,
+      weight: req.body.weight,
+      foodpref: req.body.foodpref,
+      lifestyle: req.body.lifestyle,
+      bmi: req.body.bmi,
     },
   };
+  db_connect
+    .collection("records")
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      response.json(res);
+    });
 });
 
 // This section will help you delete a record

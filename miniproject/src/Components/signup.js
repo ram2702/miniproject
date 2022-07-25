@@ -8,7 +8,7 @@ import twitter from "../Images/twitter.png";
 import sign_up from "../Images/sign-up.png";
 import sign_in from "../Images/sign-in.png";
 import Signin from "./signin";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 
 export default function SignUp() {
   const [isActive, setActive] = React.useState("false");
@@ -22,8 +22,9 @@ export default function SignUp() {
     email: "",
     password: "",
     retypePassword: "",
+    loggedIn: false,
   });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function handleChange(event) {
     setForm((prevForm) => {

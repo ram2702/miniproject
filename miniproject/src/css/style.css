@@ -29,7 +29,7 @@ a:hover {
 
 body {
 
-  color: #bbc4c2;
+  color: white;
 
 }
 
@@ -134,13 +134,23 @@ body {
   margin-left: 510px;
 }
 
+input {
+  background-color: white;
+  color: white;
+}
+
+input::placeholder {
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .caption p {
   display: flex;
   flex-direction: column;
   text-align: end;
   overflow: hidden;
   text-shadow: 3px 3px black;
-  color: #bbc4c2;
+  color: white;
   font-size: 45px;
   margin-bottom: -5px;
   opacity: 1;
@@ -208,7 +218,7 @@ body {
 .caplink {
   margin-top: 20px;
   text-shadow: 2px 2px BLACK;
-  color: #bbc4c2;
+  color: white;
   font-size: 20px;
   cursor: pointer;
   padding: 10px 20px 10px 20px;
@@ -349,122 +359,3 @@ body {
     display: none;
   }
 }
-
-/* .formbg {
-  padding: 40px;
-  position: relative;
-  margin-right: 10%;
-  background-color: rgba(47, 44, 69, 0.5);
-  border-radius: 6px;
-  height: 280px;
-  width: 340px;
-}
-
-.loginflex h2 {
-  font-family: Kanit;
-}
-
-.loginflex label {
-  font-family: Oswald;
-}
-
-.label {
-  position: absolute;
-  left: 55px;
-  top: 55px;
-  transition: all 0.2s;
-  padding: 0 2px;
-  z-index: 1;
-  color: #b3b3b3;
-}
-
-.text-input {
-  padding: 0.8rem;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #2f2c45;
-  background: #272530;
-  border-radius: 5px;
-  font-size: 18px;
-  outline: none;
-  transition: all 0.3s;
-  color: #fff;
-}
-
-.label::before {
-  content: "";
-  height: 20px;
-  background: #272530;
-  position: absolute;
-  left: 0px;
-  top: 11px;
-  width: 100%;
-  z-index: -1;
-}
-
-.text-input::placeholder {
-  font-size: 16px;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-.text-input:focus::placeholder {
-  opacity: 1;
-}
-
-.text-input:focus {
-  border: 2px solid #7e4ccb;
-}
-
-.text-input:focus+.label,
-.filled {
-  top: 29px;
-  color: #7e4ccb;
-  font-size: 18px;
-}
-
-.pass-input {
-  position: relative;
-  top: 40px;
-}
-
-.pass-label {
-  position: absolute;
-  top: 146px;
-}
-
-.pass-input:focus+.pass-label,
-.vfilled {
-  top: 120px;
-}
-
-.navlinks li:hover {
-  transition: all 0.4s ease;
-  transform: scale(1.2);
-}
-
-.loginflex {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10%;
-}
-
-.loginflex span {
-  align-self: center;
-}
-
-.button {
-  background-color: #272530;
-  position: relative;
-  top: 70px;
-  left: 192px;
-  padding: 5px 15px 5px 15px;
-  color: #b3b3b3;
-  border-style: solid;
-  border-radius: 5px;
-}
-
-button:hover {
-  border-color: #7e4ccb;
-  color: #7e4ccb;
-} */

@@ -15,7 +15,9 @@ export default function Signin(props) {
       };
     });
   }
+
   async function onSubmit(e) {
+    localStorage.setItem("currentUserName", form.username);
     e.preventDefault();
     if (
       !(
@@ -27,12 +29,21 @@ export default function Signin(props) {
       return;
     }
 
+    localStorage.setItem("loggedIn", true);
+    console.log();
+
+    records.find((x) => {
+      if (x.username === form.username) {
+        console.log(x);
+        localStorage.setItem("currentUserData", x._id);
+      }
+    });
     setForm({
       username: "",
 
       password: "",
     });
-    navigate("/dashboard");
+    navigate(`/details/${localStorage.getItem("currentUserData").toString()}`);
   }
   React.useEffect(() => {
     async function getRecords() {
