@@ -70,8 +70,6 @@ recordRoutes.route("/record/add").post(function (req, response) {
     phone: req.body.phone,
     password: req.body.password,
     loggedIn: req.body.loggedIn,
-    gender: req.body.gender,
-    age: req.body.age,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -90,6 +88,45 @@ recordRoutes.route("/update/:id").post(function (req, response) {
       foodpref: req.body.foodpref,
       lifestyle: req.body.lifestyle,
       bmi: req.body.bmi,
+      gender: req.body.gender,
+      age: req.body.age,
+    },
+  };
+  db_connect
+    .collection("records")
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      response.json(res);
+    });
+});
+
+//update food preference
+
+recordRoutes.route("/updatefood/:id").post(function (req, response) {
+  let db_connect = dbo.getAccountsDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  let newvalues = {
+    $set: {
+      foodpref: req.body.foodpref,
+    },
+  };
+  db_connect
+    .collection("records")
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      response.json(res);
+    });
+});
+recordRoutes.route("/updateGoal/:id").post(function (req, response) {
+  let db_connect = dbo.getAccountsDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  let newvalues = {
+    $set: {
+      weightToLose: req.body.weightToLose,
+      dayLimit: req.body.dayLimit,
+      activityLevel: req.body.activityLevel,
     },
   };
   db_connect

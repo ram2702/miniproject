@@ -4,10 +4,12 @@ import DashHome from "./dashHome";
 import DashRegion from "./dashRegion";
 import DashGoal from "./dashGoal";
 import { Link } from "react-router-dom";
-export default function DashBoard() {
-  const [isActive, setIsActive] = React.useState(0);
+export default function DashBoard(props) {
+  console.log(props);
+  const [isActive, setIsActive] = React.useState(props.props[1]);
   const [signOutActive, setsignOutActive] = React.useState(0);
-  const [dashElement, setdashElement] = React.useState(<DashHome />);
+  const [dashElement, setdashElement] = React.useState(props.props[0]);
+
   const handleClick = (event) => {
     setIsActive(0);
 

@@ -6,7 +6,7 @@ import "../css/details.css";
 
 const arr = 1;
 export default function Details() {
-  // const [bmi, setBmi] = React.useState(0);
+  localStorage.setItem("foodprdeference", "None");
   const [bmiStatus, setBmiStatus] = React.useState("");
   const [records, setRecords] = React.useState([]);
   const [form, setForm] = React.useState({
@@ -51,6 +51,7 @@ export default function Details() {
     return;
   }, [params.id, navigate]);
   // This method fetches the records from the database.
+
   React.useEffect(() => {
     async function getRecords() {
       const response = await fetch(`http://localhost:5000/record/`);
@@ -220,7 +221,7 @@ export default function Details() {
                 <hr />
                 <option value="South Indian">South Indian</option>
                 <hr />
-                <option value={"Generic"}>Generic</option>
+                <option value="Generic">Generic</option>
               </select>
               <button
                 className="buttonsignup detail--button"
