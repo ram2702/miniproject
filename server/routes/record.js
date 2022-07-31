@@ -22,7 +22,7 @@ recordRoutes.route("/record").get(function (req, res) {
       res.json(result);
     });
 });
-recordRoutes.route("/northdiet").get(function (req, res) {
+recordRoutes.route("/northIndian").get(function (req, res) {
   let db_connect1 = dbo.getDietDb("diet");
   db_connect1
     .collection("northdiet")
@@ -32,7 +32,7 @@ recordRoutes.route("/northdiet").get(function (req, res) {
       res.json(result);
     });
 });
-recordRoutes.route("/southdiet").get(function (req, res) {
+recordRoutes.route("/southIndian").get(function (req, res) {
   let db_connect2 = dbo.getDietDb("diet");
   db_connect2
     .collection("southdiet")
@@ -52,7 +52,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
     res.json(result);
   });
 });
-recordRoutes.route("/northdiet/:id").get(function (req, res) {
+recordRoutes.route("/northDiet/:id").get(function (req, res) {
   let db_connect = dbo.getDietDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("northdiet").findOne(myquery, function (err, result) {
@@ -127,6 +127,29 @@ recordRoutes.route("/updateGoal/:id").post(function (req, response) {
       weightToLose: req.body.weightToLose,
       dayLimit: req.body.dayLimit,
       activityLevel: req.body.activityLevel,
+      dailyBurn: req.body.dailyBurn,
+      bmr: req.body.bmr,
+      curCalReq: req.body.curCalReq,
+      dailyCalreq: req.body.dailyCalreq,
+    },
+  };
+  db_connect
+    .collection("records")
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      response.json(res);
+    });
+});
+recordRoutes.route("/updateDiet/:id").post(function (req, response) {
+  let db_connect = dbo.getAccountsDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  let newvalues = {
+    $set: {
+      previousMeal: req.body.previousMeal,
+      currentmealCal: req.body.currentmealCal,
+      calRemain: req.body.calRemain,
+      currentMeal: req.body.currentMeal,
     },
   };
   db_connect

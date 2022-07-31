@@ -28,7 +28,7 @@ function App() {
             element={<Dash propsforDash={dashRegionprops} />}
           />
           <Route path="/home" element={<MainPage />} />
-          <Route path="/DietMonitor" element={<Bigthree />} />
+          <Route path="/dietMonitor/:id" element={<Bigthree />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/details/:id/" element={<Details />} />
         </Routes>

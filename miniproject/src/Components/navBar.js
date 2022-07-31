@@ -61,7 +61,13 @@ export default function navBar(props) {
                 </span>
                 <span className="navtext home">
                   {" "}
-                  <Link to="/dashboard">Dashboard</Link>{" "}
+                  <Link
+                    to={`/dashboard/${localStorage
+                      .getItem("currentUserData")
+                      .toString()}`}
+                  >
+                    Dashboard
+                  </Link>{" "}
                 </span>
               </li>
               <li>

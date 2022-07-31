@@ -6,7 +6,7 @@ import "../css/details.css";
 
 const arr = 1;
 export default function Details() {
-  localStorage.setItem("foodprdeference", "None");
+  // localStorage.setItem("food prdeference", "None");
   const [bmiStatus, setBmiStatus] = React.useState("");
   const [records, setRecords] = React.useState([]);
   const [form, setForm] = React.useState({
@@ -217,11 +217,11 @@ export default function Details() {
                   Choose your Food Preference
                 </option>
                 <hr />
-                <option value="North Indian">North Indian</option>
+                <option value="northIndian">North Indian</option>
                 <hr />
-                <option value="South Indian">South Indian</option>
+                <option value="southIndian">South Indian</option>
                 <hr />
-                <option value="Generic">Generic</option>
+                <option value="generic">Generic</option>
               </select>
               <button
                 className="buttonsignup detail--button"

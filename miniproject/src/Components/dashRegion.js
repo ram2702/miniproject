@@ -26,8 +26,8 @@ export default function DashRegion() {
   const navigate = useNavigate();
   React.useEffect(() => {
     async function getRecords() {
-      const northresponse = await fetch(`http://localhost:5000/northdiet/`);
-      const southresponse = await fetch(`http://localhost:5000/southdiet/`);
+      const northresponse = await fetch(`http://localhost:5000/northIndian/`);
+      const southresponse = await fetch(`http://localhost:5000/southIndian/`);
       const id = params.id.toString();
       const response = await fetch(
         `http://localhost:5000/record/${params.id.toString()}`
@@ -111,13 +111,13 @@ export default function DashRegion() {
     event.preventDefault();
     switch (menu) {
       case 1:
-        form.foodpref = "South Indian";
+        form.foodpref = "southIndian";
         break;
       case 2:
-        form.foodpref = "North Indian";
+        form.foodpref = "northIndian";
         break;
       case 3:
-        form.foodpref = "Generic";
+        form.foodpref = "generic";
         break;
       default:
         break;

@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "./navBar";
-import close from "./close.png";
-import check from "./check.png";
+
 import "../css/bigthree.css";
 import { useNavigate, useParams } from "react-router";
 const preference = localStorage.getItem("Food Preference");
@@ -10,13 +9,9 @@ let totCal = 0;
 const dailyCalreq = localStorage.getItem("dailyCalreq");
 export default function Bigthree() {
   const params = useParams();
-  const [foodItems, setFoodItems] = React.useState();
-  const [apiDiet, setapiDiet] = React.useState([]);
+
   const navigate = useNavigate();
   const [form, setForm] = React.useState({});
-  const [list, setList] = React.useState(<p></p>);
-  const [confirm, setConfirm] = React.useState(false);
-  const [tempVar, setTempVar] = React.useState("");
 
   function handleChange(event) {
     if (event.target.name === "currentMeal") {

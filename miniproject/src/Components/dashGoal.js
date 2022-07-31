@@ -66,21 +66,17 @@ export default function DashGoal() {
     else if (form.activityLevel === "1.5") workoutStatus = "Light";
     else if (form.activityLevel === "1.7") workoutStatus = "High";
 
-    console.log(
-      form.weight,
-      form.height,
-      bmr,
-      curCalReq,
-      workoutStatus,
-      dailyBurn,
-      goalFeasibilityFactor
-    );
-
     const editedPerson = {
       activityLevel: form.activityLevel,
       dayLimit: form.dayLimit,
       weightToLose: form.weightToLose,
+      dailyBurn: dailyBurn,
+      bmr: bmr,
+      curCalReq: curCalReq,
+      dailyCalreq: curCalReq - dailyBurn,
     };
+    localStorage.setItem("dailyCalreq", curCalReq - dailyBurn);
+    console.log(editedPerson);
 
     // This will send a post request to update the data in the database.
     await fetch(`http://localhost:5000/updateGoal/${params.id.toString()}`, {
@@ -98,7 +94,8 @@ export default function DashGoal() {
       setwarningTag(
         <h2 className="warning red">
           WARNING! Please reconsider your Weight loss goal as this Goal
-          Unrealistic, Please change your Activity Level to lose more weight
+          Unrealistic, Please change your Activity Level or Increase Day Limit
+          to lose more weight
         </h2>
       );
       return;

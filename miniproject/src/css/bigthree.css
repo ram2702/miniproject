@@ -1,5 +1,5 @@
 .big--container {
-    height: 90vh;
+    height: 150vh;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -8,17 +8,124 @@
 
 .big--sub-container {
     width: 90%;
-    height: 80vh;
+    height: 140vh;
     background-color: rgba(23, 27, 28, 0.442);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.big--heading {
+    font-size: 45px;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.big--elements {
+    margin-left: 10%;
+    margin-bottom: 3%;
+    font-size: 30px;
+    text-shadow: 3px 3px black;
+}
+
+.big--first {
+    margin-top: 5%;
+
+}
+
+.big--fal {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 10%;
+
+    margin-left: 10%;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 4px;
+    border-color: white;
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px black;
+}
+
+.big--fal:hover {
+    color: #85dcb0;
+    border-color: #85dcb0;
+}
+
+.big--food {
+    display: inline-block;
+    width: 80%;
+}
+
+.big--food h2 {
+    float: left;
+    width: 20%;
+}
+
+.big--select {
+    margin-left: 5%;
+    width: 60%;
+    font-size: 30px;
+    background-color: transparent;
+    border-width: 0ch 0 2px 0;
+}
+
+
+
+.big--select option {
+    background-color: transparent;
+    color: black;
+}
+
+.big--list {
+    margin-bottom: 1%;
+    background-color: rgba(38, 47, 47, 0.623);
+    width: 30%;
+    padding: 2px;
+    text-align: center;
     border-radius: 10px;
 }
 
-.big-dropdown {
-    background-color: transparent;
-    padding: 5px;
+.big--close {
+    margin-right: 10%;
+    margin-top: 1%;
 }
 
-.big-dropdown-opt {
-    color: black;
+
+.big--button-one {
     background-color: transparent;
+    border: none;
+}
+
+.big--cal {
+    margin-top: 2%;
+}
+
+.big--minus {
+    float: left;
+    margin-left: 3%;
+    cursor: pointer;
+}
+
+.tikc-close {
+    float: right;
+    display: flex;
+    margin-right: 14%;
+}
+
+.tikc-close img {
+    cursor: pointer;
+}
+
+.big--plus {
+    float: right;
+    margin-right: 3%;
+    cursor: pointer;
+}
+
+.big--submit {
+    margin-top: 0%;
+
+    align-self: flex-start;
 }
