@@ -5,6 +5,11 @@
     transition: all 0.1s ease;
 }
 
+.dashHome {
+
+    background-size: cover;
+}
+
 body {
     background-color: #1F2024;
 }
@@ -19,7 +24,7 @@ body {
 }
 
 .container {
-    margin-top: 5vh;
+    margin-top: 2vh;
     padding-bottom: 5vh;
     display: flex;
     flex-direction: row;
@@ -31,7 +36,7 @@ body {
 .dash {
 
     width: 80vw;
-    height: 120vh;
+    height: 100vh;
     box-shadow: 1px 1px 16px -7px black;
     border-radius: 10px;
     display: flex;
@@ -46,6 +51,7 @@ body {
     margin-top: 7vh;
     font-size: 40px;
 }
+
 
 .container--menu {
     width: 20vw;
@@ -354,4 +360,13 @@ form {
 .goalinput input:focus,
 .goalinput input:focus::placeholder {
     color: white;
+}
+
+.heavyt {
+    width: 40%;
+}
+
+.heavy {
+    width: 40%;
+    float: left;
 }

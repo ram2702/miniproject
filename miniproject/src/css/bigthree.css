@@ -78,7 +78,21 @@
     color: black;
 }
 
+.positioned {
+    margin-top: -25%;
+    float: left;
+    margin-bottom: 1%;
+    background-color: rgba(38, 47, 47, 0.623);
+    width: 30%;
+    padding: 2px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+
+
 .big--list {
+
     margin-bottom: 1%;
     background-color: rgba(38, 47, 47, 0.623);
     width: 30%;
@@ -128,4 +142,71 @@
     margin-top: 0%;
 
     align-self: flex-start;
+}
+
+.displayChart {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    margin-left: 0%;
+}
+
+.displayChart span {
+    width: 60%;
+    float: left;
+    margin-left: 0%;
+}
+
+.barchart {
+    height: 250px;
+    width: 500px;
+    margin-top: 5vh;
+    align-self: center;
+    color: black;
+}
+
+.piechart {
+    height: 150px;
+    width: 1200px;
+    margin-top: 10vh;
+    align-self: center;
+    margin-left: -2%;
+    color: black;
+}
+
+.trackoption {
+    width: 30%;
+    align-self: center;
+    margin-top: 1%;
+    font-size: 30px;
+    background-color: transparent;
+    border-width: 0ch 0 2px 0;
+}
+
+.trackoption option {
+    background-color: transparent;
+    color: black;
+}
+
+.purple {
+    animation-name: rainbow;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    transition: all ease;
+}
+
+@keyframes rainbow {
+    0% {
+        color: indigo;
+
+    }
+
+    50% {
+        color: #8A2BE2;
+    }
+
+    100% {
+        color: purple;
+    }
 }

@@ -1,0 +1,53 @@
+#include "sys/socket.h"
+#include "netinet/in.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main()
+{
+	char buf[100];
+	int k;
+	int sock_desc;
+	struct sockaddr_in client;
+	
+	memset(&client, 0, sizeof(client));
+	
+	sock_desc = socket(AF_INET, SOCK_STREAM, 0);
+	if(sock_desc == -1)
+	{
+		printf("Error in socket creation");
+		exit(1);
+	}
+	
+	client.sin_family=AF_INET;
+	client.sin_addr.s_addr=INADDR_ANY;
+	client.sin_port = 3001;
+	
+	k = connect(sock_desc, (struct sockaddr*)&client, sizeof(client));
+	if(k == -1)
+	{
+		printf("Error in connecting to server");
+		exit(1);
+	}
+	printf("\nEnter data to be sent : ");
+	fgets(buf, 100, stdin);
+	k = send(sock_desc, buf, 100, 0);
+	if(k == -1)
+	{
+		printf("Error in sending");
+		exit(1);
+	}
+	sleep(2);
+	k = recv(sock_desc, buf, 100, 0);
+	if(k == -1)
+	{
+		printf("\nError in receiving the data back..");
+		exit(1);
+	}
+	printf("Reversed data : ");
+	puts(buf);
+	close(sock_desc);
+	exit(0);
+	return 0;
+}

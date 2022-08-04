@@ -53,13 +53,25 @@ export default function SignUp() {
     }
     window.alert("User Created");
     const newPerson = { ...form };
-
+    const calorieData = {
+      username: form.username,
+    };
     await fetch("http://localhost:5000/record/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newPerson),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+    await fetch("http://localhost:5000/calorieTrack/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(calorieData),
     }).catch((error) => {
       window.alert(error);
       return;

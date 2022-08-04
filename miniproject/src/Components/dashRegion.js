@@ -152,7 +152,7 @@ export default function DashRegion() {
           <h2
             onClick={handleClick.bind(Event, 0)}
             className={
-              form.foodpref === "South Indian"
+              form.foodpref === "southIndian"
                 ? "dietitem south green"
                 : "dietitem south"
             }
@@ -165,7 +165,7 @@ export default function DashRegion() {
         <h2
           onClick={handleClick.bind(Event, 1)}
           className={
-            form.foodpref === "North Indian"
+            form.foodpref === "northIndian"
               ? "dietitem north green"
               : "dietitem north"
           }

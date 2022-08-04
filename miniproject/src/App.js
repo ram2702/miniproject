@@ -9,6 +9,7 @@ import Bigthree from "./Components/bigthree";
 import Signup from "./Components/signup";
 import Details from "./Components/details";
 import DashHome from "./Components/dashHome";
+import DietTracker from "./Components/dietTracker";
 
 console.log(document.all);
 function App() {
@@ -29,6 +30,7 @@ function App() {
           />
           <Route path="/home" element={<MainPage />} />
           <Route path="/dietMonitor/:id" element={<Bigthree />} />
+          <Route path="/dietTracker/:id" element={<DietTracker />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/details/:id/" element={<Details />} />
         </Routes>

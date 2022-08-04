@@ -11,6 +11,9 @@ const dbo = require("../db/conn");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
+const date = new Date();
+const today = date.getDate();
+console.log(today);
 // This section will help you get a list of all the records.
 recordRoutes.route("/record").get(function (req, res) {
   let db_connect = dbo.getAccountsDb("Accounts");
@@ -52,13 +55,25 @@ recordRoutes.route("/record/:id").get(function (req, res) {
     res.json(result);
   });
 });
-recordRoutes.route("/northDiet/:id").get(function (req, res) {
-  let db_connect = dbo.getDietDb();
-  let myquery = { _id: ObjectId(req.params.id) };
-  db_connect.collection("northdiet").findOne(myquery, function (err, result) {
-    if (err) throw err;
-    res.json(result);
-  });
+recordRoutes.route("/calorieTrack").get(function (req, res) {
+  let db_connect = dbo.getAccountsDb("Accounts");
+  db_connect
+    .collection("calorieTrack")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
+recordRoutes.route("/calorieTrack/:username").get(function (req, res) {
+  let db_connect = dbo.getAccountsDb();
+  let myquery = { username: req.params.username };
+  db_connect
+    .collection("calorieTrack")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
 
 // This section will help you create a new record.
@@ -72,6 +87,16 @@ recordRoutes.route("/record/add").post(function (req, response) {
     loggedIn: req.body.loggedIn,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
+});
+recordRoutes.route("/calorieTrack/add").post(function (req, response) {
+  let db_connect = dbo.getAccountsDb();
+  let myobj = {
+    username: req.body.username,
+  };
+  db_connect.collection("calorieTrack").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
@@ -100,6 +125,109 @@ recordRoutes.route("/update/:id").post(function (req, response) {
       response.json(res);
     });
 });
+recordRoutes
+  .route("/updatecalorieTrackByUsername")
+  .post(function (req, response) {
+    let db_connect = dbo.getAccountsDb();
+    let myquery = { username: req.body.username };
+    let newvalues = {
+      $set: {
+        date: req.body.date,
+        [date.getDate()]: req.body[date.getDate()],
+        breakFastCal: req.body.breakFastCal,
+        lunchCal: req.body.lunchCal,
+        snackCal: req.body.snackCal,
+        dinnerCal: req.body.dinnerCal,
+      },
+    };
+    db_connect
+      .collection("calorieTrack")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("calorie document updated");
+        response.json(res);
+      });
+  });
+recordRoutes
+  .route("/updatecalorieTrackByUsernameBreakfast")
+  .post(function (req, response) {
+    let db_connect = dbo.getAccountsDb();
+    let myquery = { username: req.body.username };
+    let newvalues = {
+      $set: {
+        date: req.body.date,
+        [date.getDate()]: req.body[date.getDate()],
+        breakFastCal: req.body.currentmealCal,
+      },
+    };
+    db_connect
+      .collection("calorieTrack")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("calorie document updated");
+        response.json(res);
+      });
+  });
+recordRoutes
+  .route("/updatecalorieTrackByUsernameLunch")
+  .post(function (req, response) {
+    let db_connect = dbo.getAccountsDb();
+    let myquery = { username: req.body.username };
+    let newvalues = {
+      $set: {
+        date: req.body.date,
+        [date.getDate()]: req.body[date.getDate()],
+        lunchCal: req.body.currentmealCal,
+      },
+    };
+    db_connect
+      .collection("calorieTrack")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("calorie document updated");
+        response.json(res);
+      });
+  });
+recordRoutes
+  .route("/updatecalorieTrackByUsernameSnack")
+  .post(function (req, response) {
+    let db_connect = dbo.getAccountsDb();
+    let myquery = { username: req.body.username };
+    let newvalues = {
+      $set: {
+        date: req.body.date,
+        [date.getDate()]: req.body[date.getDate()],
+        snackCal: req.body.currentmealCal,
+      },
+    };
+    db_connect
+      .collection("calorieTrack")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("calorie document updated");
+        response.json(res);
+      });
+  });
+recordRoutes
+  .route("/updatecalorieTrackByUsernameDinner")
+  .post(function (req, response) {
+    let db_connect = dbo.getAccountsDb();
+    let myquery = { username: req.body.username };
+    let newvalues = {
+      $set: {
+        date: req.body.date,
+        [date.getDate()]: req.body[date.getDate()],
+        dinnerCal: req.body.currentmealCal,
+      },
+    };
+    db_connect
+      .collection("calorieTrack")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("calorie document updated");
+        response.json(res);
+      });
+  });
 
 //update food preference
 
@@ -150,6 +278,8 @@ recordRoutes.route("/updateDiet/:id").post(function (req, response) {
       currentmealCal: req.body.currentmealCal,
       calRemain: req.body.calRemain,
       currentMeal: req.body.currentMeal,
+      date: req.body.date,
+      dayMealCal: req.body.dayMealCal,
     },
   };
   db_connect

@@ -7,8 +7,12 @@ import { useNavigate, useParams } from "react-router";
 const preference = localStorage.getItem("Food Preference");
 const arr = 2;
 let totCal = 0;
+let calUpdater;
 const dailyCalreq = localStorage.getItem("dailyCalreq");
 export default function Bigthree() {
+  const date = new Date();
+  let dateData = date.getDate();
+  // console.log(dateData);
   const params = useParams();
   const [foodItems, setFoodItems] = React.useState();
   const [apiDiet, setapiDiet] = React.useState([]);
@@ -16,13 +20,14 @@ export default function Bigthree() {
   const [form, setForm] = React.useState({});
   const [list, setList] = React.useState(<p></p>);
   const [confirm, setConfirm] = React.useState(false);
+  const [confirmSubmit, setConfirmSubmit] = React.useState(false);
   const [tempVar, setTempVar] = React.useState("");
+  const [calDetails, setCalDetails] = React.useState({});
 
   function handleChange(event) {
     if (event.target.name === "currentMeal") {
       setTempVar(event.target.value);
     }
-    console.log(tempVar);
     setForm((prevForm) => {
       return {
         ...prevForm,
@@ -35,7 +40,6 @@ export default function Bigthree() {
     setConfirm(false);
     let temp = [];
     setFoodItems(temp);
-    console.log(foodItems);
     totCal = 0;
   }
 
@@ -43,11 +47,9 @@ export default function Bigthree() {
     totCal = 0;
     if (confirm === false) {
       foodItems.map((x) => (totCal += x.calories * x.count));
-      console.log(totCal);
       setForm((pre) => ({ ...pre, currentmealCal: totCal }));
     }
     let calRemaind = dailyCalreq - totCal;
-    console.log(calRemaind);
     setForm((pre) => ({ ...pre, calRemain: calRemaind }));
     setConfirm(true);
   }
@@ -75,7 +77,6 @@ export default function Bigthree() {
         }
       });
       setFoodItems(temp);
-      console.log(foodItems);
       setList(
         foodItems.map((x) => (
           <p className="big--elements big--list" key={x.name}>
@@ -101,7 +102,6 @@ export default function Bigthree() {
       });
 
       setFoodItems(temp);
-      console.log(foodItems);
 
       setList(
         foodItems.map((x) => (
@@ -134,13 +134,12 @@ export default function Bigthree() {
           </p>
         ))
       );
-
-    console.log(foodItems);
   }, [foodItems]);
 
   React.useEffect(() => {
     async function fetchData() {
       const id = params.id.toString();
+
       const response = await fetch(
         `http://localhost:5000/record/${params.id.toString()}`
       );
@@ -165,9 +164,34 @@ export default function Bigthree() {
     }
 
     fetchData();
-    console.log("Hi");
+
     return;
-  }, [params.id, navigate]);
+  }, [params.id, params.name, navigate]);
+  // console.log(form);
+
+  React.useEffect(() => {
+    async function getRecords() {
+      const response = await fetch(
+        `http://localhost:5000/calorieTrack/${localStorage
+          .getItem("Username")
+          .toString()}`
+      );
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const records = await response.json();
+      setCalDetails(records);
+    }
+
+    getRecords();
+
+    return;
+  }, [form.username]);
+  // console.log(calDetails);
 
   React.useEffect(() => {
     if (form.currentMeal !== form.previousMeal) {
@@ -195,22 +219,58 @@ export default function Bigthree() {
   }, [params.id]);
 
   async function onSubmit(event) {
+    setConfirm(false);
+    if (calDetails.date !== dateData) {
+      let temp = calDetails;
+      temp.breakFastCal = 0;
+      temp.lunchCal = 0;
+      temp.snackCal = 0;
+      temp.dinnerCal = 0;
+      temp.date = dateData;
+      setCalDetails(temp);
+    }
+    console.log(calDetails);
     if (!confirm) {
       return;
     }
     let temp = tempVar;
-    setForm((pre) => ({ ...pre, currentMeal: temp }));
-    console.log(form.currentMeal);
+    setForm((pre) => ({ ...pre, currentMeal: temp, dayMealCal: 0 }));
+    console.log(form.dayMealCal);
+    if (form.date === dateData) {
+      let temp = form;
+      if (temp.currentMeal === "Breakfast") temp.dayMealCal = 0;
+      temp.dayMealCal += form.currentmealCal;
+      setForm(temp);
+    } else if (form.date !== dateData) {
+      setForm((pre) => ({ ...pre, dayMealCal: 0 }));
+    }
     event.preventDefault();
     console.log(form);
     const editedPerson = {
+      date: dateData,
       previousMeal: form.previousMeal,
       currentMealCal: form.currentmealCal,
       calRemain: form.calRemain,
       currentMeal: form.currentMeal,
+      dayMealCal: form.dayMealCal,
     };
+    console.log(editedPerson);
 
-    // This will send a post request to update the data in the database.
+    calUpdater = {
+      date: dateData,
+      username: form.username,
+      [date.getDate()]: form.dayMealCal,
+      currentmealCal: form.currentmealCal,
+    };
+    console.log(calUpdater);
+
+    await fetch(`http://localhost:5000/updatecalorieTrackByUsername`, {
+      method: "POST",
+      body: JSON.stringify(calDetails),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     await fetch(`http://localhost:5000/updateDiet/${params.id.toString()}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
@@ -218,9 +278,19 @@ export default function Bigthree() {
         "Content-Type": "application/json",
       },
     });
+    await fetch(
+      `http://localhost:5000/updatecalorieTrackByUsername${form.currentMeal}`,
+      {
+        method: "POST",
+        body: JSON.stringify(calUpdater),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    setConfirmSubmit(true);
   }
-
-  console.log(form);
+  // console.log(form);
 
   return (
     <>
@@ -265,10 +335,13 @@ export default function Bigthree() {
                   Choose Food items
                 </option>
                 {apiDiet.map((items) => (
-                  <option key={items._id} value={items.food}>
-                    {items.food}
-                    {` (1 ${items.unit}: ${items.calories} kcals)`}
-                  </option>
+                  <>
+                    <option key={items._id} value={items.food}>
+                      {items.food}
+                      {` (1 ${items.unit}: ${items.calories} kcals)`}
+                    </option>
+                    <hr />
+                  </>
                 ))}
               </select>
               <span className="tikc-close">
@@ -288,24 +361,36 @@ export default function Bigthree() {
                 />
               </span>
             </h2>
-            {list}
+
+            {confirmSubmit && (
+              <h2 className="big--elements green">Successfully Recorded</h2>
+            )}
+
+            {!confirmSubmit && list}
+
             <br />
             <br />
-            {confirm && (
+            {confirm && !confirmSubmit && (
               <h2 className="big--elements">
                 Total Calories : {form.currentmealCal} <br />
                 Daily Calorie Goal : {form.dailyCalreq} <br />
-                Left to Consume : {form.calRemain} kcals
+                Left to Consume :{" "}
+                {form.calRemain - calDetails[dateData] < 0
+                  ? 0
+                  : form.calRemain - calDetails[dateData]}{" "}
+                kcals
               </h2>
             )}
 
-            <button
-              className=" big--fal detail--button"
-              type="submit"
-              onClick={onSubmit}
-            >
-              SUBMIT
-            </button>
+            {confirm && !confirmSubmit && (
+              <button
+                className=" big--fal detail--button"
+                type="submit"
+                onClick={onSubmit}
+              >
+                SUBMIT
+              </button>
+            )}
           </div>
         </div>
       </div>

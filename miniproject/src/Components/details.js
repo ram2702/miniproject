@@ -181,6 +181,8 @@ export default function Details() {
                   Calculate BMI
                 </button>
               </div>
+
+              <p className="detail--bmistat">{bmiStatus}</p>
               <input
                 type="number"
                 name="age"
@@ -190,7 +192,6 @@ export default function Details() {
                 placeholder="Age"
               />
 
-              <p className="detail--bmistat">{bmiStatus}</p>
               <select
                 value={form.lifestyle}
                 onChange={handleChange}

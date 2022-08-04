@@ -32,7 +32,7 @@ export default function DashBoard(props) {
     setsignOutActive(0);
   };
   return (
-    <div className="container">
+    <div className="container  ">
       <div className="container--menu">
         <h2
           className={isActive === 0 ? "menuselect" : ""}
